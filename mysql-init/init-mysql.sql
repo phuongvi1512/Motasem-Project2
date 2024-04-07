@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS reportsdb;
+
+USE reportsdb;
+DROP TABLE IF EXISTS reports;
+
+CREATE TABLE reports
+(
+    id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    trace_id    VARCHAR(255) DEFAULT NULL,
+    file_id     VARCHAR(255) DEFAULT NULL,
+    switch_id   VARCHAR(255) DEFAULT NULL,
+    timestamp   DATETIME DEFAULT NULL,
+    file_size   BIGINT DEFAULT NULL,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) AUTO_INCREMENT = 1;

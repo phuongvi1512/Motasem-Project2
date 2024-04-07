@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Number of Reports</th>
+                <th>Max Size</th>
+                <th>Average Size</th>
+                <th>Date created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in data %}
+            <tr>
+                <td>{{ doc.num_reports }}</td>
+                <td>{{ doc.max_size }}</td>
+                <td>{{ doc.avg_size }}</td>
+                <td>{{ doc.timestamp }}</td>
+                <!-- <td>{{ doc.date_created }}</td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

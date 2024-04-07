@@ -1,0 +1,70 @@
+services:
+  mysqldb:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: reportsdb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: minhhoing66
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+    # networks:
+    #   - project1
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d
+      - mongodb-data:/data/db
+    # networks:
+    #   - project1
+
+  webapp:
+    build: ./my-node-express
+    environment:
+      DB_HOST: mysqldb  # Use the MySQL service name here
+      DB_PORT: 3306
+      DB_USER: admin
+      DB_PASS: minhhoing66
+      DB_NAME: reportsdb
+    ports:
+      - "5000:3000"
+    depends_on:
+      - mysqldb
+    # networks:
+    #   - project1
+
+  analyticpy:
+    build: ./analytic
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mysqldb
+      - webapp
+      - mongodb
+    # networks:
+    #   - project1
+
+  resultapppy:
+    build: ./result
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mysqldb
+      - mongodb
+      - webapp
+      - analyticpy
+    # networks:
+    #   - project1
+# networks:
+#   project1:
+#     name: project1_network
+       
+volumes:
+  mongodb-data: {}
+  mysql-data: {} 

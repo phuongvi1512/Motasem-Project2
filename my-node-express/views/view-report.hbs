@@ -1,0 +1,40 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">View Report</li>
+  </ol>
+</nav>
+
+<div class="view-report p-5">
+  {{#each reports}}
+  <div class="row mb-5">
+    <div class="col text-center">
+      <h3>Report ID: {{this.id}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Trace ID</th>
+            <th scope="col">File ID</th>
+            <th scope="col">Switch ID</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">File Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{this.trace_id}}</td>
+            <td>{{this.file_id}}</td>
+            <td>{{this.switch_id}}</td>
+            <td>{{this.timestamp}}</td>
+            <td>{{this.file_size}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/each}}
+</div>
