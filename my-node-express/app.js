@@ -36,37 +36,6 @@ const handlebars = exphbs.create({
 app.engine('.hbs', handlebars.engine);
 app.set('view engine', '.hbs');
 
-// Connection Pool
-// You don't need the connection here as we have it in userController
-// let connection = mysql.createConnection({
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASS,
-//   database: process.env.DB_NAME
-// });
-
-// Display the login form
-// app.get('/login', (req, res) => {
-//     res.render('login');
-// });
-
-// Handle login
-// app.post('/login', (req, res) => {
-//     const { username, password } = req.body;
-//     // Hardcoded user for demonstration. Replace with database lookup in real application.
-//     const USER = {
-//         username: 'admin',
-//         password: 'password'
-//     };
-
-//     if (username === USER.username && password === USER.password) {
-//         req.session.loggedin = true;
-//         req.session.username = username;
-//         res.redirect('/dashboard');
-//     } else {
-//         res.send('Incorrect Username and/or Password!');
-//     }
-// });
 const authRoutes = require('./server/routes/auth');
 app.use('/', authRoutes);
 const routes = require('./server/routes/report');
