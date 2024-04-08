@@ -51,7 +51,7 @@ def dashboard():
     try:
         client = MongoClient(
             host=os.getenv('MONGODB_HOST'),
-            port=int(os.getenv('MONGODB_PORT')))
+            port=27017) #int(os.getenv('MONGODB_PORT')))
         db = client['analyticdb']
         collection = db['analytic']
 
