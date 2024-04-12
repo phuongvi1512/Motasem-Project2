@@ -44,10 +44,11 @@ def retrieve_mysql_and_update_mongodb():
             cur.execute("SELECT avg(file_size) FROM reports")
             avg_size = cur.fetchone()[0]
 
-            client = MongoClient(                
-                host=os.getenv('MONGODB_HOST'),
-                port=27017) #int(os.getenv('MONGODB_PORT')))
+            # client = MongoClient(                
+            #     host=os.getenv('MONGODB_HOST'),
+            #     port=27017) #int(os.getenv('MONGODB_PORT')))
         
+            client = MongoClient('mongodb://mongodb:27017')
             
             db = client['analyticdb']
             collection = db['analytic']

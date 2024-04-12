@@ -49,9 +49,10 @@ def dashboard():
         flash('Please login first', 'danger')
         return redirect(url_for('login'))
     try:
-        client = MongoClient(
-            host=os.getenv('MONGODB_HOST'),
-            port=27017) #int(os.getenv('MONGODB_PORT')))
+        # client = MongoClient(
+        #     host=os.getenv('MONGODB_HOST'),
+        #     port=27017) #int(os.getenv('MONGODB_PORT')))
+        client = MongoClient('mongodb://mongodb:27017')
         db = client['analyticdb']
         collection = db['analytic']
 
